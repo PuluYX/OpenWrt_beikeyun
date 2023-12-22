@@ -1,4 +1,4 @@
-name: ImmortalWrt
+name: ImmortalWrt-23.05
 
 on:
   workflow_dispatch:
