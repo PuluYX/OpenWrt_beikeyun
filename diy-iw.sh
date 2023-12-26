@@ -18,7 +18,20 @@ rm -rf feeds/luci/themes/luci-theme-netgear
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 rm -rf feeds/luci/applications/luci-app-serverchan
+
+# frp
+rm -rf feeds/packages/net/frp
+git clone https://github.com/yhl452493373/openwrt-frp.git feeds/packages/net/frp
+FRP_URL=$( curl -sL https://api.github.com/repos/fatedier/frp/releases | grep -P 'download/v[\d.]+/frp_[\d.]+_linux_amd64.tar.gz' | awk -F '"' '{print $4}' | awk 'NR==1{print}' )
+FRP_VERSION=$( echo $FRP_URL | awk -F '/' '{print $8}' | awk '{gsub(/v/,"");print $1}' )
+FRP_HASH=$( curl -sL https://codeload.github.com/fatedier/frp/tar.gz/v$FRP_VERSION | sha256sum | awk -F ' ' '{print $1}' )
+# 更新frp源码到最新版本
+sed -i -e 's/^PKG_VERSION.*/PKG_VERSION:='''$FRP_VERSION'''/' feeds/packages/net/frp/Makefile
+sed -i -e 's/^PKG_HASH.*/PKG_HASH:='''$FRP_HASH'''/' feeds/packages/net/frp/Makefile
+
+# FRP穿透
 rm -rf feeds/luci/applications/luci-app-frpc
+git clone https://github.com/yhl452493373/luci-app-frpc.git feeds/luci/applications/luci-app-frpc
 
 # 添加额外插件
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
@@ -31,7 +44,6 @@ svn export https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser 
 svn export https://github.com/Lienol/openwrt-package/trunk/luci-app-ssr-mudb-server package/luci-app-ssr-mudb-server
 #svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-eqos package/luci-app-eqos
 # svn export https://github.com/syb999/openwrt-19.07.1/trunk/package/network/services/msd_lite package/msd_lite
-git clone --depth=1 https://git.mczhengyi.top/zhengyi/luci-app-multi-frpc.git package/luci-app-multi-frpc
 
 
 
