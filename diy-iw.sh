@@ -20,18 +20,18 @@ rm -rf feeds/luci/applications/luci-app-netdata
 rm -rf feeds/luci/applications/luci-app-serverchan
 
 # frp
-rm -rf feeds/packages/net/frp
-git clone https://github.com/yhl452493373/openwrt-frp.git feeds/packages/net/frp
-FRP_URL=$( curl -sL https://api.github.com/repos/fatedier/frp/releases | grep -P 'download/v[\d.]+/frp_[\d.]+_linux_amd64.tar.gz' | awk -F '"' '{print $4}' | awk 'NR==1{print}' )
-FRP_VERSION=$( echo $FRP_URL | awk -F '/' '{print $8}' | awk '{gsub(/v/,"");print $1}' )
-FRP_HASH=$( curl -sL https://codeload.github.com/fatedier/frp/tar.gz/v$FRP_VERSION | sha256sum | awk -F ' ' '{print $1}' )
+#rm -rf feeds/packages/net/frp
+#git clone https://github.com/yhl452493373/openwrt-frp.git feeds/packages/net/frp
+#FRP_URL=$( curl -sL https://api.github.com/repos/fatedier/frp/releases | grep -P 'download/v[\d.]+/frp_[\d.]+_linux_amd64.tar.gz' | awk -F '"' '{print $4}' | awk 'NR==1{print}' )
+#FRP_VERSION=$( echo $FRP_URL | awk -F '/' '{print $8}' | awk '{gsub(/v/,"");print $1}' )
+#FRP_HASH=$( curl -sL https://codeload.github.com/fatedier/frp/tar.gz/v$FRP_VERSION | sha256sum | awk -F ' ' '{print $1}' )
 # 更新frp源码到最新版本
-sed -i -e 's/^PKG_VERSION.*/PKG_VERSION:='''$FRP_VERSION'''/' feeds/packages/net/frp/Makefile
-sed -i -e 's/^PKG_HASH.*/PKG_HASH:='''$FRP_HASH'''/' feeds/packages/net/frp/Makefile
+#sed -i -e 's/^PKG_VERSION.*/PKG_VERSION:='''$FRP_VERSION'''/' feeds/packages/net/frp/Makefile
+#sed -i -e 's/^PKG_HASH.*/PKG_HASH:='''$FRP_HASH'''/' feeds/packages/net/frp/Makefile
 
 # FRP穿透
 rm -rf feeds/luci/applications/luci-app-frpc
-git clone https://github.com/yhl452493373/luci-app-frpc.git feeds/luci/applications/luci-app-frpc
+git clone https://github.com/kuoruan/luci-app-frpc.git package/luci-app-frpc
 
 # 添加额外插件
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
@@ -61,7 +61,7 @@ git clone --depth=1 -b master https://github.com/kiddin9/luci-theme-edge package
 git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
-git clone https://github.com/gngpp/luci-theme-design.git package/luci-theme-design
+git clone -b js https://github.com/papagaye744/luci-theme-design.git package/luci-theme-design
 git clone https://github.com/gngpp/luci-app-design-config.git package/luci-app-design-config
 svn export https://github.com/haiibo/packages/trunk/luci-theme-atmaterial package/luci-theme-atmaterial
 svn export https://github.com/haiibo/packages/trunk/luci-theme-opentomcat package/luci-theme-opentomcat
