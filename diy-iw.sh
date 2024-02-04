@@ -30,8 +30,8 @@ rm -rf feeds/luci/applications/luci-app-serverchan
 #sed -i -e 's/^PKG_HASH.*/PKG_HASH:='''$FRP_HASH'''/' feeds/packages/net/frp/Makefile
 
 # FRP穿透
-rm -rf feeds/luci/applications/luci-app-frpc
-git clone https://github.com/yhl452493373/luci-app-frpc.git package/luci-app-frpc
+#rm -rf feeds/luci/applications/luci-app-frpc
+#git clone https://github.com/yhl452493373/luci-app-frpc.git package/luci-app-frpc
 
 # 添加额外插件
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
