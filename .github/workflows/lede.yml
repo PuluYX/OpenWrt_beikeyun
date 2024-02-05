@@ -2,8 +2,6 @@ name: LEDE By Coolsnowwolf
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 19 * * 2
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
