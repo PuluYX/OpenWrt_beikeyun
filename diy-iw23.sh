@@ -53,15 +53,15 @@ svn export https://github.com/haiibo/packages/trunk/luci-theme-opentomcat packag
 svn export https://github.com/haiibo/packages/trunk/luci-theme-netgear package/luci-theme-netgear
 
 # 更改 Argon 主题背景
-cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+#cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 
 
 # 在线用户
-svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luci-app-onliner
-sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/emortal/default-settings/files/99-default-settings
-sed -i '$i uci commit nlbwmon' package/emortal/default-settings/files/99-default-settings
-chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
+#svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luci-app-onliner
+#sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/emortal/default-settings/files/99-default-settings
+#sed -i '$i uci commit nlbwmon' package/emortal/default-settings/files/99-default-settings
+#chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # x86 型号只显示 CPU 型号
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/emortal/autocore/files/x86/autocore
@@ -72,7 +72,7 @@ sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/emortal/autocore/
 # 修改版本为编译日期
 date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/emortal/default-settings/files/99-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-sed -i "s/${orig_version}/R${date_version} by Haiibo/g" package/emortal/default-settings/files/99-default-settings
+sed -i "s/${orig_version}/R${date_version} by LoogCP/g" package/emortal/default-settings/files/99-default-settings
 
 # 修复 hostapd 报错
 cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
