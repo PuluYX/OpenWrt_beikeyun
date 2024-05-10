@@ -3,7 +3,7 @@
 # 修改默认IP
 sed -i 's/192.168.1.1/10.10.1.1/g' package/base-files/files/bin/config_generate
 
-# 更改默认 Shell 为 zsh
+# 更改默认 Shell 为 fish
 sed -i 's/\/bin\/ash/\/usr\/bin\/fish/g' package/base-files/files/etc/passwd
 
 # TTYD 自动登录
@@ -19,9 +19,11 @@ function git_sparse_clone() {
 }
 
 
-# 修改frpc
+# 修改frpc、zerotier
 rm -rf feeds/luci/applications/luci-app-frpc
+rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/yhl452493373/luci-app-frpc.git package/luci-app-frpc
+git clone --depth=1 https://github.com/zhengmz/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
 
 
 # 添加额外插件
