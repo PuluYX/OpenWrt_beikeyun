@@ -1,20 +1,12 @@
 #!/bin/bash
 
+./scripts/feeds update -a
+
 # 修改默认IP
 sed -i 's/192.168.1.1/10.10.1.1/g' package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 fish
 sed -i 's/\/bin\/ash/\/usr\/bin\/fish/g' package/base-files/files/etc/passwd
-
-function git_sparse_clone() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
-}
-
 
 # 修改frpc、zerotier
 rm -rf feeds/luci/applications/luci-app-frpc
@@ -30,12 +22,12 @@ git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/lu
 git clone --depth=1 -b master https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
-git clone https://github.com/gngpp/luci-theme-design.git package/luci-theme-design
-git clone https://github.com/gngpp/luci-app-design-config.git package/luci-app-design-config
-svn export https://github.com/haiibo/packages/trunk/luci-theme-atmaterial package/luci-theme-atmaterial
-svn export https://github.com/haiibo/packages/trunk/luci-theme-opentomcat package/luci-theme-opentomcat
-svn export https://github.com/haiibo/packages/trunk/luci-theme-netgear package/luci-theme-netgear
+#git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
+#git clone https://github.com/gngpp/luci-theme-design.git package/luci-theme-design
+#git clone https://github.com/gngpp/luci-app-design-config.git package/luci-app-design-config
+#svn export https://github.com/haiibo/packages/trunk/luci-theme-atmaterial package/luci-theme-atmaterial
+#svn export https://github.com/haiibo/packages/trunk/luci-theme-opentomcat package/luci-theme-opentomcat
+#svn export https://github.com/haiibo/packages/trunk/luci-theme-netgear package/luci-theme-netgear
 
 # 更改 Argon 主题背景
 #cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
