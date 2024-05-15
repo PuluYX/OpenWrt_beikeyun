@@ -8,9 +8,9 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/fish/g' package/base-files/files/etc/passwd
 
 # 修改frpc、zerotier
 rm -rf feeds/luci/applications/luci-app-frpc
-#rm -rf feeds/luci/applications/luci-app-zerotier
+rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/yhl452493373/luci-app-frpc.git package/luci-app-frpc
-#git clone --depth=1 https://github.com/zhengmz/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
+git clone --depth=1 https://github.com/zhengmz/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
 
 
 # 添加额外插件
