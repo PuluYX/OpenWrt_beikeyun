@@ -1,6 +1,4 @@
 #!/bin/bash
-./scripts/feeds update -a
-
 # 修改默认IP
 sed -i 's/192.168.1.1/10.10.1.1/g' package/base-files/files/bin/config_generate
 
@@ -40,4 +38,5 @@ sed -i "s/${orig_version}/R${date_version} by LoogCP/g" package/emortal/default-
 # 修复 hostapd 报错
 #cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
+./scripts/feeds update -a
 ./scripts/feeds install -a -f
