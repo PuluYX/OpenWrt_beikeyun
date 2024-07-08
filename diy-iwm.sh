@@ -8,6 +8,10 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/fish/g' package/base-files/files/etc/passwd
 # 修改frpc
 rm -rf feeds/luci/applications/luci-app-frpc
 git clone https://github.com/yhl452493373/luci-app-frpc.git package/luci-app-frpc
+#修改homeproxy
+rm -rf  feeds/luci/applications/luci-app-homeproxy
+rm -rf feeds/luci/applications/homeproxy
+git clone https://github.com/muink/homeproxy package/homeproxy
 
 
 # 添加额外插件
