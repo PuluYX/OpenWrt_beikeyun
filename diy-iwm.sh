@@ -12,8 +12,7 @@ git clone https://github.com/yhl452493373/luci-app-frpc.git package/luci-app-frp
 rm -rf  feeds/luci/applications/luci-app-homeproxy
 rm -rf feeds/luci/applications/homeproxy
 #git clone https://github.com/bulianglin/homeproxy package/homeproxy
-git clone https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
-git clone https://github.com/muink/homeproxy.git package/homeproxy
+git clone https://github.com/muink/luci-app-homeproxy
 
 # 添加额外插件
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
