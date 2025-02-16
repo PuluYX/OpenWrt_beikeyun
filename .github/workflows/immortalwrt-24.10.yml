@@ -12,7 +12,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ImmortalWrt-master
+  FIRMWARE_TAG: ImmortalWrt-24.10
   TZ: Asia/Shanghai
 
 jobs:
