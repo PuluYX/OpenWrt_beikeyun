@@ -2,6 +2,8 @@ name: ImmortalWrt-24.10
 
 on:
   workflow_dispatch:
+  #schedule:
+   # - cron: 0 20 * * *
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
@@ -19,7 +21,18 @@ jobs:
   Build:
     runs-on: ubuntu-22.04
 
+    outputs:
+      COMMIT_AUTHOR: ${{ steps.clone.outputs.COMMIT_AUTHOR }}
+      COMMIT_DATE: ${{ steps.clone.outputs.COMMIT_DATE }}
+      COMMIT_MESSAGE: ${{ steps.clone.outputs.COMMIT_MESSAGE }}
+      COMMIT_HASH: ${{ steps.clone.outputs.COMMIT_HASH }}
+      DEVICE_TARGET: ${{ steps.variable.outputs.DEVICE_TARGET }}
+      DEVICE_SUBTARGET: ${{ steps.variable.outputs.DEVICE_SUBTARGET }}
+
     steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
     - name: Check Server Performance
       run: |
         echo "警告⚠"
