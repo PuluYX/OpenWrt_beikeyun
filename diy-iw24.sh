@@ -2,6 +2,17 @@
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.124.88/g' package/base-files/files/bin/config_generate
 
+# 修改默认IP和密码
+sed -i 's/192.168.1.1/192.168.124.88/g' package/base-files/files/bin/config_generate
+sed -i 's/root::0:0:99999:7:::/root:$1$pulu$pulu:0:0:99999:7:::/g' package/base-files/files/etc/shadow
+
+# 调整根目录容量（RK3328通常为EMMC存储）
+sed -i 's/option overlay_size.*/option overlay_size 8192/g' target/linux/rockchip/image/Makefile
+
+# 针对RK3328的优化（可选）
+echo 'CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y' >> .config
+echo 'CONFIG_ARM64_CRYPTO=y' >> .config
+
 # 更改默认 Shell 为 fish
 sed -i 's/\/bin\/ash/\/usr\/bin\/fish/g' package/base-files/files/etc/passwd
 
